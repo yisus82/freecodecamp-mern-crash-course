@@ -1,0 +1,27 @@
+{
+  "name": "freecodecamp-mern-crash-course",
+  "version": "1.0.0",
+  "description": "MERN Stack Tutorial with Deployment – Beginner's Course - freeCodeCamp.org",
+  "main": "backend/server.ts",
+  "scripts": {
+    "dev": "node --watch-path ./backend/ ./backend/server.ts"
+  },
+  "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yisus82/freecodecamp-mern-crash-course.git"
+  },
+  "author": "Jesús Ángel Pérez-Roca Fernández",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/yisus82/freecodecamp-mern-crash-course/issues"
+  },
+  "homepage": "https://github.com/yisus82/freecodecamp-mern-crash-course#readme",
+  "dependencies": {
+    "express": "^4.21.2",
+    "mongoose": "^8.10.0"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.0"
+  }
+}
