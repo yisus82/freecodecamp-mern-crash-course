@@ -23,7 +23,27 @@ app.post('/api/products', async (req, res) => {
   try {
     const newProduct = new Product(product);
     await newProduct.save();
-    res.status(201).json(newProduct);
+    res.header('Location', `/api/products/${newProduct._id}`);
+    res.status(201).json({ message: 'Product created', data: newProduct });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Internal server error' });
+  }
+});
+
+app.delete('/api/products/:id', async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    const product = await Product.findById(id);
+
+    if (!product) {
+      res.status(404).json({ message: 'Product not found' });
+      return;
+    }
+
+    await product.deleteOne();
+    res.status(200).json({ message: 'Product removed', data: product });
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: 'Internal server error' });
