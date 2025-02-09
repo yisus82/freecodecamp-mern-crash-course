@@ -26,7 +26,7 @@ app.post('/api/products', async (req, res) => {
     res.header('Location', `/api/products/${newProduct._id}`);
     res.status(201).json({ message: 'Product created', data: newProduct });
   } catch (error) {
-    console.error(error);
+    console.error(`Error creating product: ${error.message}`);
     res.status(500).json({ message: 'Internal server error' });
   }
 });
@@ -35,23 +35,19 @@ app.delete('/api/products/:id', async (req, res) => {
   const { id } = req.params;
 
   try {
-    const product = await Product.findById(id);
-
-    if (!product) {
+    const deletedProduct = await Product.findByIdAndDelete(id);
+    if (!deletedProduct) {
       res.status(404).json({ message: 'Product not found' });
       return;
     }
-
-    await product.deleteOne();
-    res.status(200).json({ message: 'Product removed', data: product });
+    res.status(200).json({ message: 'Product removed', data: deletedProduct });
   } catch (error) {
-    console.error(error);
+    console.error(`Error deleting product: ${error.message}`);
     res.status(500).json({ message: 'Internal server error' });
   }
 });
 
 app.listen(port, () => {
-  console.log('Environment:', process.env.NODE_ENV);
   connectDB();
   console.log(`Server is running on ${server}:${port}`);
 });
