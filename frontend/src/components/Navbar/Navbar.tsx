@@ -1,5 +1,5 @@
 import { Container, Flex, HStack, IconButton, Text } from '@chakra-ui/react';
-import { LuPlus } from 'react-icons/lu';
+import { LuSquarePlus } from 'react-icons/lu';
 import { Link } from 'react-router-dom';
 import { ColorModeButton } from '../ui/color-mode';
 import './Navbar.css';
@@ -26,7 +26,7 @@ const Navbar = () => (
             aria-label='Create product'
             size={{ base: '2xl', smDown: 'sm' }}
           >
-            <LuPlus />
+            <LuSquarePlus />
           </IconButton>
         </Link>
         <ColorModeButton variant='subtle' size={{ base: '2xl', smDown: 'sm' }} />
