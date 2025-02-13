@@ -1,4 +1,3 @@
-import { useColorModeValue } from '@/components/ui/color-mode';
 import { Toaster, toaster } from '@/components/ui/toaster';
 import { useProductStore } from '@/store/product';
 import { Product } from '@/types/frontend';
@@ -14,7 +13,7 @@ const CreatePage = () => {
   const { createProduct } = useProductStore();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = e.type === 'number' ? +e.target.value : e.target.value;
+    const value = e.target.name === 'price' ? +e.target.value : e.target.value;
     setNewProduct({
       ...newProduct,
       [e.target.name]: value,
@@ -43,7 +42,7 @@ const CreatePage = () => {
         <Heading as='h1' size='2xl' textAlign='center' mb={8}>
           Create New Product
         </Heading>
-        <Box w='full' bg={useColorModeValue('white', 'gray.800')} p={6} rounded='lg' shadow='md'>
+        <Box w='full' p={6} rounded='lg' shadow='md'>
           <VStack px={4} py={4}>
             <Input
               placeholder='Product Name'
@@ -55,9 +54,7 @@ const CreatePage = () => {
             <Input
               placeholder='Price'
               name='price'
-              type='number'
-              min={0}
-              value={newProduct.price === 0 ? '' : newProduct.price}
+              value={+newProduct.price === 0 ? '' : +newProduct.price}
               onChange={handleChange}
               required
             />
@@ -68,7 +65,7 @@ const CreatePage = () => {
               onChange={handleChange}
               required
             />
-            <Button colorScheme='blue' onClick={handleAddProduct} w='full'>
+            <Button colorPalette='blue' onClick={handleAddProduct} w='full'>
               Add Product
             </Button>
           </VStack>
