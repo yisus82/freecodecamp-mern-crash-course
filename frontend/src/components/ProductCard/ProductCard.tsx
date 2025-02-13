@@ -2,7 +2,7 @@ import { useProductStore } from '@/store/product';
 import { Product } from '@/types/frontend';
 import { Box, Button, Card, IconButton, Image, Input, VStack } from '@chakra-ui/react';
 import { useState } from 'react';
-import { IoPencil, IoTrash } from 'react-icons/io5';
+import { LuPencil, LuTrash2 } from 'react-icons/lu';
 import { useColorModeValue } from '../ui/color-mode';
 import {
   DialogActionTrigger,
@@ -90,10 +90,10 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
         </Card.Description>
         <Card.Footer justifyContent='flex-end'>
           <IconButton onClick={() => setUpdateDialogOpen(true)} bgColor='blue.500' color='white'>
-            <IoPencil />
+            <LuPencil />
           </IconButton>
           <IconButton onClick={() => setDeleteDialogOpen(true)} bgColor='red.500' color='white'>
-            <IoTrash />
+            <LuTrash2 />
           </IconButton>
         </Card.Footer>
       </Card.Root>
